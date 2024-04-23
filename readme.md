@@ -26,11 +26,11 @@ The onboarding process is designed thinking that it will only collect more infor
 
 - **Content**
   - name - string
-  - challenges: Array of challenges
+  - challenges: array
   - learning_speed: string
-  - support_type: string;
-  - description: string;
-  - learning_style: string;
+  - support_type: string
+  - description: string
+  - learning_style: string
 
 ## Tech Stack
 
