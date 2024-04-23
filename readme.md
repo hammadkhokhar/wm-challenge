@@ -4,9 +4,9 @@
 
 The idea is to enhance wavemakers existing prototype with a new feature which is content recommendation.
 
-Considering that we already have existing prototype we will develop a microservice that can be integrated with our prototype and develop a simple UI to demonstrate the feature.
+Given that we already have an existing prototype, I developed a microservice using TypeScript that can seamlessly integrate with the main prototype. Additionally, I designed a minimal UI with HTML and TailwindCSS to demonstrate the feature's functionality.
 
-The onboarding process is designed thinking that it will only collect more information about a user for recommendation service.
+The onboarding process is designed thinking that it will only collect more information about a user for recommendation services.
 
 ### Functional Requirements
 
@@ -25,8 +25,8 @@ The onboarding process is designed thinking that it will only collect more infor
 ## Schema
 
 - **Content**
-  - name - string
-  - challenges: array
+  - name: string
+  - challenges: string[]
   - learning_speed: string
   - support_type: string
   - description: string
@@ -34,29 +34,32 @@ The onboarding process is designed thinking that it will only collect more infor
 
 ## Tech Stack
 
-- **Node.js** - Runtime environment for the backend.
-- **Express.js** - Web framework for Node.js.
-- **Firestore** - NoSQL database to store the content data.
-- **Tailwind CSS** - CSS framework for the UI.
-- **HTML** - Markup language for the UI.
+- **TypeScript** 
+- **Express.js**
+- **Firebase/Firestore**
+- **Tailwind CSS**
+- **HTML**
 
 ## Project Structure
 
-- **src** - Contains the source code for the microservice.
-- **public** - Contains the static files for the UI.
+- **src** - Contains the microservice source code.
+- **public** - Holds static files for the UI.
 
 ## Pre-requisites
 
-- Node.js
-- Update firebase credentials in `src/config.js`, you might need to modify the firebase rules to allow read and write access to the database.
+- Update Firebase credentials in `src/config.js`. You may need to adjust Firebase rules to enable database read and write access.
 
 ## Setup
 
 1. Clone the repository.
 2. Run `npm install` to install the dependencies.
-3. Run `npm run build` to build the microservice.
-4. Run `npm start` to start the server at localhost:80 (default port).
+3. Execute npm run build to build the microservice; the build will be located in the dist folder.
+4. Launch the server with npm start, defaulting to localhost:80.
 
-Once the server is running, you can seed the content data by making a POST request to `/content/seed`.
+## How it works
 
-You can open index.html from public folder to see the UI.
+1. With the server running, seed content data by sending a POST request to `/content/seed`.
+
+2. Open index.html in the public folder to access the UI.
+
+3. Select challenges and preferences to receive personalized content recommendations.
