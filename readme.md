@@ -20,7 +20,7 @@ The onboarding process is designed thinking that it will only collect more infor
 
 - **POST /content/seed** - Used to seed the content data in firestore.
 
-- **POST /content** - Retrieves the recommended content for the user based on the user preferences. A
+- **POST /content** - Retrieves the recommended content for the user based on the user preferences.
 
 ## Schema
 
@@ -48,7 +48,7 @@ The onboarding process is designed thinking that it will only collect more infor
 ## Pre-requisites
 
 - Node.js
-- Update firebase credentials in `src/config.js`
+- Update firebase credentials in `src/config.js`, you might need to modify the firebase rules to allow read and write access to the database.
 
 ## Setup
 
@@ -59,4 +59,4 @@ The onboarding process is designed thinking that it will only collect more infor
 
 Once the server is running, you can seed the content data by making a POST request to `/content/seed`.
 
-You can visit public folder and open index.html to see the UI.
+You can open index.html from public folder to see the UI.
