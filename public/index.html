@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wizard Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-cyan-400 flex justify-center items-center h-screen">
+    <div class="max-w-screen-xl flex items-center justify-center w-full h-full">
+      <div class="w-64 p-8 bg-white text-left">
+        <div class="text-center mb-4">
+          <img
+            src="./assets/617944bde74c401a48d429d8_Logo_Wavemakers_yellow.svg"
+            alt="Logo"
+          />
+        </div>
+        <h1 class="text-m text-center font-bold">
+          Welcome to the WaveMakers Leadership Experience Program
+        </h1>
+      </div>
+      <div
+        class="flex-grow p-8 bg-white shadow-md rounded-md flex justify-center min-w-[600px] min-h-[400px]"
+      >
+        <div class="max-w-3xl w-full">
+          <div id="progressBar" class="flex justify-center items-center mb-8">
+            <div
+              id="progressStep1"
+              class="flex items-center justify-center w-10 h-10 mr-2 rounded-full bg-yellow-500 text-gray-600 font-bold"
+            >
+              1
+            </div>
+            <div
+              id="progressLine1"
+              class="border-b-2 border-yellow-500 flex-grow"
+            ></div>
+            <div
+              id="progressStep2"
+              class="flex items-center justify-center w-10 h-10 mr-2 rounded-full bg-gray-300 text-gray-600 font-bold"
+            >
+              2
+            </div>
+          </div>
+
+          <form id="programWizardForm" action="#">
+            <!-- Step 1 -->
+            <div id="step1" class="step">
+              <!-- Step Title -->
+              <h2 class="text-xl font-bold mb-4">Challenges</h2>
+              <div class="mb-4 flex justify-between">
+                <div class="mb-4">
+                  <label
+                    for="challenges"
+                    class="block text-gray-700 font-bold mb-2"
+                    >What are the biggest challenges you face at work?</label
+                  >
+                  <div class="grid grid-cols-3 gap-4">
+                    <div>
+                      <input
+                        type="checkbox"
+                        id="stress"
+                        name="challenges[]"
+                        value="stress"
+                        class="cursor-pointer"
+                      />
+                      <label
+                        for="stress"
+                        class="select-box inline-block px-4 py-2 rounded-md border border-gray-300 cursor-pointer hover:bg-gray-100"
+                        >Stress management</label
+                      >
+                    </div>
+                    <div>
+                      <input
+                        type="checkbox"
+                        id="time"
+                        name="challenges[]"
+                        value="time"
+                        class="cursor-pointer"
+                      />
+                      <label
+                        for="time"
+                        class="select-box inline-block px-4 py-2 rounded-md border border-gray-300 cursor-pointer hover:bg-gray-100"
+                        >Time management</label
+                      >
+                    </div>
+                    <div>
+                      <input
+                        type="checkbox"
+                        id="communication"
+                        name="challenges[]"
+                        value="communication"
+                        class="cursor-pointer"
+                      />
+                      <label
+                        for="communication"
+                        class="select-box inline-block px-4 py-2 rounded-md border border-gray-300 cursor-pointer hover:bg-gray-100"
+                        >Communication issues</label
+                      >
+                    </div>
+                    <div>
+                      <input
+                        type="checkbox"
+                        id="collaboration"
+                        name="challenges[]"
+                        value="collaboration"
+                        class="cursor-pointer"
+                      />
+                      <label
+                        for="collaboration"
+                        class="select-box inline-block px-4 py-2 rounded-md border border-gray-300 cursor-pointer hover:bg-gray-100"
+                        >Team collaboration</label
+                      >
+                    </div>
+                    <div>
+                      <input
+                        type="checkbox"
+                        id="advancement"
+                        name="challenges[]"
+                        value="advancement"
+                        class="cursor-pointer"
+                      />
+                      <label
+                        for="advancement"
+                        class="select-box inline-block px-4 py-2 rounded-md border border-gray-300 cursor-pointer hover:bg-gray-100"
+                        >Career advancement</label
+                      >
+                    </div>
+                    <div>
+                      <input
+                        type="checkbox"
+                        id="balance"
+                        name="challenges[]"
+                        value="balance"
+                        class="cursor-pointer"
+                      />
+                      <label
+                        for="balance"
+                        class="select-box inline-block px-4 py-2 rounded-md border border-gray-300 cursor-pointer hover:bg-gray-100"
+                        >Work-life balance</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onclick="nextStep(1)"
+                class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Next
+              </button>
+            </div>
+            <!-- Step 2 -->
+            <div id="step2" class="step hidden">
+              <!-- Step Title -->
+              <h2 class="text-xl font-bold mb-4">
+                Support & Learning Preferences
+              </h2>
+              <div class="mb-4">
+                <label
+                  for="supportType"
+                  class="block text-gray-700 font-bold mb-2"
+                  >How would you like to recieve support?</label
+                >
+                <select
+                  id="supportType"
+                  name="supportType"
+                  class="select-box block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                >
+                  <option value="any">Any</option>
+                  <option value="Personalized coaching sessions">
+                    Personalized coaching sessions
+                  </option>
+                  <option value="Peer support">Peer support</option>
+                </select>
+              </div>
+              <div class="mb-4">
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      for="learningSpeed"
+                      class="block text-gray-700 font-bold mb-2"
+                      >Preferred learning speed:</label
+                    >
+                    <select
+                      id="learningSpeed"
+                      name="learningSpeed"
+                      class="select-box block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    >
+                      <option value="any">Any</option>
+                      <option value="Slow">Slow</option>
+                      <option value="Moderate">Moderate</option>
+                      <option value="Fast">Fast</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      for="learningStyle"
+                      class="block text-gray-700 font-bold mb-2"
+                      >Preferred learning style:</label
+                    >
+                    <select
+                      id="learningStyle"
+                      name="learningStyle"
+                      class="select-box block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    >
+                      <option value="any">Any</option>
+                      <option value="Reading">Reading articles</option>
+                      <option value="Watching">Watching videos</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onclick="prevStep(2)"
+                class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Previous
+              </button>
+              <button
+                type="submit"
+                class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+          <!-- Recommendations -->
+          <div id="recommendations" class="mt-8">
+            <h2 class="text-xl font-bold mb-4 hidden" id="recHead">
+              Recommendations
+            </h2>
+            <div id="recommendationsList" class="grid grid-cols-2 gap-4"></div>
+            <div>
+              <div class="mt-8">
+                <p class="text-center text-gray-600 text-sm">
+                  &copy; 2024 WaveMakers. All rights reserved.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Get the form element
+      const form = document.getElementById("programWizardForm");
+
+      // Add event listener for the "submit" event
+      form.addEventListener("submit", async (event) => {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        // Initialize FormData object with form element
+        const formData = new FormData(form);
+
+        // Get value by name
+        const challenges = formData.getAll("challenges[]");
+        const supportType = formData.get("supportType");
+        const learningSpeed = formData.get("learningSpeed");
+        const learningStyle = formData.get("learningStyle");
+
+        let recommendations = await getRecommendations(
+          challenges,
+          learningSpeed,
+          supportType,
+          learningStyle,
+        );
+
+        if (recommendations.length > 0) {
+          document.getElementById("recHead").classList.remove("hidden");
+          // Display recommendations
+          const recommendationsList = document.getElementById(
+            "recommendationsList",
+          );
+          recommendationsList.innerHTML = "";
+          recommendations.forEach((recommendation) => {
+            const recommendationItem = document.createElement("div");
+            recommendationItem.classList.add(
+              "bg-gray-100",
+              "p-4",
+              "rounded-md",
+            );
+            recommendationItem.innerHTML = `
+                        <h3 class="text-lg font-bold">${recommendation.name}</h3>
+                        <p>${recommendation.description}</p>
+                    `;
+            recommendationsList.appendChild(recommendationItem);
+          });
+        } else {
+          const recommendationsList = document.getElementById(
+            "recommendationsList",
+          );
+          recommendationsList.innerHTML = "";
+          const recommendationItem = document.createElement("div");
+          recommendationItem.classList.add("bg-gray-100", "p-4", "rounded-md");
+          recommendationItem.innerHTML = `
+                    <h3 class="text-lg font-bold">Opps..</h3>
+                    <p>We couldn't find content. Please try again by changing preference.</p>
+                `;
+          recommendationsList.appendChild(recommendationItem);
+        }
+      });
+
+      // Function to get recommendations
+      async function getRecommendations(
+        challenges,
+        learningSpeed,
+        supportType,
+        learningStyle,
+      ) {
+        let result;
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+          challenges: challenges,
+          learning_speed: learningSpeed,
+          support_type: supportType,
+          learning_style: learningStyle,
+        });
+
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
+
+        // Fetch recommendations from the server
+        await fetch("http://localhost:80/content", requestOptions)
+          .then((response) => response.json())
+          .then((content) => (result = content))
+          .catch((error) => console.error(error));
+
+        return result;
+      }
+
+      // Function to navigate to the previous step
+      function prevStep(step) {
+        document.getElementById("step" + step).classList.add("hidden");
+        document.getElementById("step" + (step - 1)).classList.remove("hidden");
+
+        document
+          .getElementById("progressStep" + step)
+          .classList.add("bg-gray-300");
+        document
+          .getElementById("progressStep" + step)
+          .classList.remove("bg-yellow-500");
+        document
+          .getElementById("progressLine" + (step - 1))
+          .classList.add("border-gray-300");
+        document
+          .getElementById("progressLine" + (step - 1))
+          .classList.remove("border-yellow-500");
+      }
+
+      // Function to navigate to the next step
+      function nextStep(step) {
+        // Check if the current step's form fields are valid
+        if (!validateStep(step)) {
+          return; // Stop execution if validation fails
+        }
+
+        // Hide current step and show next step
+        document.getElementById("step" + step).classList.add("hidden");
+        document.getElementById("step" + (step + 1)).classList.remove("hidden");
+
+        // Update progress indicators
+        document
+          .getElementById("progressStep" + (step + 1))
+          .classList.add("bg-yellow-500");
+        document
+          .getElementById("progressStep" + (step + 1))
+          .classList.remove("bg-gray-300");
+        document
+          .getElementById("progressLine" + step)
+          .classList.add("border-yellow-500");
+        document
+          .getElementById("progressLine" + step)
+          .classList.remove("border-gray-300");
+      }
+
+      // Function to validate form fields for each step
+      function validateStep(step) {
+        if (step === 1) {
+          // validation for Step 1 (Challenges)
+          var checkboxes = document.getElementsByName("challenges[]");
+          var isValid = false;
+          for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+              isValid = true;
+              break;
+            }
+          }
+          if (!isValid) {
+            alert("Please select at least one challenge.");
+            return false;
+          }
+        }
+        return true; // Return true if validation passes
+      }
+    </script>
+  </body>
+</html>
