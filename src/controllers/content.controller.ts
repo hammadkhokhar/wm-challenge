@@ -7,20 +7,23 @@ import {
   DocumentReference,
   collection,
   DocumentData,
+  query,
+  where,
+  Query,
 } from "firebase/firestore";
 import { database } from "../config/firebase.config";
 import { ContentData } from "../interfaces/content.interface";
 
 class Content {
   private static instance: Content | null = null;
-  private collection: CollectionReference;
+  private readonly collection: CollectionReference<DocumentData>;
 
-  // Private constructor to prevent instantiation of the class
+  // Private constructor to prevent instantiation of the class from outside
   private constructor(collection: CollectionReference) {
     this.collection = collection;
   }
 
-  // Singleton pattern to ensure only one instance of the class is created
+  // Ensure only one instance of the class is created
   static getInstance(collection: CollectionReference): Content {
     if (!Content.instance) {
       Content.instance = new Content(collection);
@@ -45,27 +48,28 @@ class Content {
   ): Promise<ContentData[]> {
     try {
       const content: ContentData[] = [];
-      // Get all documents in the collection
-      const contents: QuerySnapshot<DocumentData> = await getDocs(
-        this.collection,
-      );
+      
+      // Query builder for the collection
+      let queryFilter: Query<DocumentData> = query(this.collection);
 
-      // Iterate through each document in the collection
-      contents.forEach((doc) => {
+      // Query building with filters
+      if (userSelection.learning_speed !== "any") {
+        queryFilter = query(queryFilter, where("learning_speed", "==", userSelection.learning_speed));
+      }
+      if (userSelection.support_type !== "any") {
+        queryFilter = query(queryFilter, where("support_type", "==", userSelection.support_type));
+      }
+      if (userSelection.learning_style !== "any") {
+        queryFilter = query(queryFilter, where("learning_style", "==", userSelection.learning_style));
+      }
+
+      // Execute the query
+      const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(queryFilter);
+
+      // Process query results
+      querySnapshot.forEach((doc) => {
         const contentData = doc.data() as ContentData;
-        // Checks if individual user selections match the document to recommend
-        if (
-          (userSelection.learning_speed === "any" ||
-            userSelection.learning_speed === contentData.learning_speed) &&
-          (userSelection.support_type === "any" ||
-            userSelection.support_type === contentData.support_type) &&
-          (userSelection.learning_style === "any" ||
-            userSelection.learning_style === contentData.learning_style) &&
-          userSelection.challenges.some((challenge) =>
-            contentData.challenges.includes(challenge),
-          )
-        ) {
-          // Add the document to the recommendations
+        if (userSelection.challenges.some(challenge => contentData.challenges.includes(challenge))) {
           content.push(contentData);
         }
       });
@@ -121,8 +125,15 @@ async function addContent(req: Request, res: Response): Promise<void> {
 
     // Add documents to the collection
     for (const doc of data) {
-      const processed = await contentInstance.add(doc);
-      console.log("Document added:", processed.id);
+      const existingDocQuery = query(contentCollectionRef, where("name", "==", doc.name));
+      const existingDocs = await getDocs(existingDocQuery);
+
+      if (existingDocs.empty) {
+        const processed = await contentInstance.add(doc);
+        console.log("Document added:", processed.id);
+      } else {
+        console.log("Document already exists:", doc.name);
+      }
     }
 
     res.status(201).send({ message: "Seeded" });
