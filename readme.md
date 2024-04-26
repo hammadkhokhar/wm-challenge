@@ -47,14 +47,14 @@ The onboarding process is designed thinking that it will only collect more infor
 
 ## Pre-requisites
 
-- Update Firebase credentials in `src/config.js`. You may need to adjust Firebase rules to enable database read and write access.
+- Update Firebase credentials in `src/firebase.config.ts`. You may need to adjust Firebase rules to enable database read and write access.
 
 ## Setup
 
 1. Clone the repository.
 2. Run `npm install` to install the dependencies.
-3. Execute npm run build to build the microservice; the build will be located in the dist folder.
-4. Launch the server with npm start, defaulting to localhost:80.
+3. Execute `npm run build` to build the microservice; the build will be located in the dist folder.
+4. Launch the server with `npm start`, defaulting to localhost:80.
 
 ## How it works
 
